@@ -10,12 +10,6 @@ describe('Test Body', () => {
         let b = 1;
         expect(3).to.eq(a + b);
     });
-
-    it('Contains todo input element', () => {
-        cy.visit('http://todomvc.com/examples/react/#/')
-
-        cy.get('.new-todo')
-    });
 })
 
 
