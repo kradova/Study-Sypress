@@ -4,6 +4,7 @@ describe("Assertions", () => {
 
         cy.get(".new-todo")
             .should("have.attr", "placeholder",
-                "What needs to be done?");
+                "What needs to be done?")
+                .and("have.class", "new-todo");
     });
 });
