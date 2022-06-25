@@ -21,4 +21,11 @@ describe("Assertions", () => {
             });
              
     });
+
+    it("assert explicit subjects", () => {
+        const eqString = "foo";
+        expect(eqString).to.eq("foo");
+        expect(eqString).to.have.lengthOf(3);
+        expect(eqString).to.be.a("string");             
+    });
 });
