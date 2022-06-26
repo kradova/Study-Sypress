@@ -5,9 +5,16 @@ it('can add a todo', () => {
     cy.get(".todo-list").find('li').should('have.length', 1);
 });
 
-it('Error Test: can add a todo', () => {
+it.skip('Error Test: can add a todo', () => {
     cy.visit("http://todomvc.com/examples/react/#/");
 
     cy.get(".new-todo").type("New Todo {Enter}");
     cy.get(".todo-list").find('li').should('have.length', 2);
+});
+
+it('can mark a todo as completed', () => {
+    cy.get(".new-todo").type("New Todo {Enter}");
+    cy.get(".new-todo").type("Another New Todo {Enter}");
+    cy.get('.todo-list>li:nth-child(1)').find('.toggle').click();
+    cy.get('.todo-list>li:nth-child(2)').find('.toggle').click();
 });
