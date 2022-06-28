@@ -12,7 +12,7 @@ it.skip('Error Test: can add a todo', () => {
     cy.get(".todo-list").find('li').should('have.length', 2);
 });
 
-it('can mark a todo as completed', () => {
+it.skip('can mark a todo as completed', () => {
     cy.visit("http://todomvc.com/examples/react/#/");
 
     cy.get(".new-todo").type("New Todo {Enter}");
@@ -21,7 +21,7 @@ it('can mark a todo as completed', () => {
     cy.get('.todo-list>li:nth-child(2)').find('.toggle').click();
 });
 
-it('Special commands-debug : can mark a todo as completed',
+it.skip('Special commands-debug : can mark a todo as completed',
     () => {
         cy.visit("http://todomvc.com/examples/react/#/");
 
@@ -30,3 +30,11 @@ it('Special commands-debug : can mark a todo as completed',
         cy.get('.todo-list>li:nth-child(1)').find('.toggle').click();
         cy.get('.todo-list>li:nth-child(2)').find('.toggle').click();
     });
+
+it('Special commands - Pause: can mark a todo as completed', () => {
+    cy.visit("http://todomvc.com/examples/react/#/");
+
+    cy.get(".new-todo").type("New Todo {Enter}");
+    cy.pause();
+    cy.get('.todo-list>li:nth-child(1)').find('.toggle').click();
+});  
