@@ -1,9 +1,11 @@
-it('can create and display new todo', () => {
-    cy.get('[data-testid="todo-item-input"]')
+it.only('can create and display new todo', () => {
+    cy.visit('http://localhost:3000/')
+    cy.get('[data-testid="todo-input-element"]')
         .type('New todo');
     cy.get('[data-testid="add-todo-button"]')
         .click();
-    cy.contains('New Todo');
+    cy.get('[data-testid="todolist"]')
+        .contains('New todo');
 });
 
 it('can delete added todo item', () => {
@@ -38,3 +40,4 @@ it('can view number of added todo items', () => {
         .click();
     expect('[data-testid="todo-item-number"]').to.eq('1');
 });
+
