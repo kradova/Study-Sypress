@@ -1,4 +1,4 @@
-it.only('can create and display new todo', () => {
+it('can create and display new todo', () => {
     cy.visit('http://localhost:3000/')
     cy.get('[data-testid="todo-input-element"]')
         .type('New todo');
@@ -9,16 +9,18 @@ it.only('can create and display new todo', () => {
 });
 
 it('can delete added todo item', () => {
-    cy.get('[data-testid="todo-item-input"]')
+    cy.visit('http://localhost:3000/');
+    cy.get('[data-testid="todo-input-element"]')
         .type('New todo');
     cy.get('[data-testid="add-todo-button"]')
         .click();
-    cy.get('[data-testid="delete-todo-1-button"]')
+    cy.get('[data-testid="delete-todo-0-button"]')
         .click();
-    expect('[data-testid="todolist"]').not.to.contain('New Todo');
+    expect('[data-testid="todolist"]')
+        .not.to.contain('New todo');
 });
 
-it('can view added todo item', () => {
+it.only('can view added todo item', () => {
     cy.get('[data-testid="todo-item-input"]')
         .type('New todo');
     cy.get('[data-testid="add-todo-button"]')
