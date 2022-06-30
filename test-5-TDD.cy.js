@@ -20,15 +20,19 @@ it('can delete added todo item', () => {
         .not.to.contain('New todo');
 });
 
-it.only('can view added todo item', () => {
-    cy.get('[data-testid="todo-item-input"]')
-        .type('New todo');
-    cy.get('[data-testid="add-todo-button"]')
-        .click();
-    expect('[data-testid="todolist"]').to.contain('New Todo');
+it('can view added todo item', () => {
+    cy.visit('http://localhost:3000/')
+    cy.get('[data-testid="todo-input-element"]')
+        .type('New todo, {enter}');
+    cy.get('[data-testid="todo-input-element"]')
+        .type('Another todo, {enter}');
+    cy.get('[data-testid="todolist"]').contains(
+        'New todo');
+    cy.get('[data-testid="todolist"]')
+        .contains('Another todo');
 });
 
-it('can view number of added todo items', () => {
+it.only('can view number of added todo items', () => {
     cy.get('[data-testid="todo-item-input"]')
         .type('New todo');
     cy.get('[data-testid="add-todo-button"]')
