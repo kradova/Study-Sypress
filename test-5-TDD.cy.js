@@ -33,17 +33,20 @@ it('can view added todo item', () => {
 });
 
 it.only('can view number of added todo items', () => {
-    cy.get('[data-testid="todo-item-input"]')
-        .type('New todo');
-    cy.get('[data-testid="add-todo-button"]')
-        .click();
-    cy.get('[data-testid="todo-item-input"]')
-        .type('Another todo');
-    cy.get('[data-testid="add-todo-button"]')
-        .click();
-    expect('[data-testid="todo-item-number"]').to.eq('2')
+    cy.visit('http://localhost:3000/')
+    cy.get('[data-testid="todo-input-element"]')
+        .type('New todo, {enter}');
+    cy.get('[data-testid="todo-input-element"]')
+        .type('Another todo, {enter}');
+    cy.get('[data-testid="todo-item-number"]')
+        .should(($header) => {
+            expect($header.get(0).innerText).to.contain('2')
+        });
     cy.get('[data-testid="delete-todo-1-button"]')
         .click();
-    expect('[data-testid="todo-item-number"]').to.eq('1');
+    cy.get('[data-testid="todo-item-number"]')
+        .should(($header) => {
+            expect($header.get(0).innerText).to.contain('1')
+        });
 });
 
