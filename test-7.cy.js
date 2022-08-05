@@ -30,7 +30,7 @@ describe('Cypress Variables', () => {
         // we include it in our beforeEach function so that it runs before each test
         cy.visit('http://todomvc.com/examples/react/#/')
     })
-    
+
     var a = 20;
     it('var scope context', () => {
         a = 30; // overriding global scope
@@ -40,5 +40,19 @@ describe('Cypress Variables', () => {
         // Variable scope remains the same as the change affects
         // the global scope
         expect(a).to.eq(30) //a = 30
+    });
+});
+
+describe('Cypress Variables', () => {
+    // Variable declaration
+    let a = 20;
+    it('let scope context', () => {
+        let a = 30;
+        // Local scoped variable
+        expect(a).to.eq(30) // a = 30
+    });
+    it('let scope context - global', () => {
+        // Global scoped variable
+        expect(a).to.eq(30) // a = 20
     });
 });
